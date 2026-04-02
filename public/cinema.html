@@ -62,6 +62,19 @@
         crossorigin="anonymous"></script>
     <script>
         const table = document.getElementById('cinemas')
+
+        function edit(id) {
+            alert(id)
+        }
+
+        function remove(id) {
+            if (!confirm(`Obrisi bioskop ${id}?`))
+                return
+
+            fetch(`/api/cinema/${id}`, { method: 'delete' })
+                .then(rsp => window.location.reload())
+        }
+
         fetch('/api/cinema')
             .then(rsp => rsp.json())
             .then(data => {
@@ -71,11 +84,16 @@
                     <tr>
                         <th scope="row">${cinema.cinemaId}</th>
                         <td>${cinema.name}</td>
-                        <td>${cinema.address} min</td>
+                        <td>${cinema.address}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-primary">
-                                <i class="fa-solid fa-up-right-from-square"></i> Detalji
-                            </a>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-success" type="button" onclick="edit(${cinema.cinemaId})">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger" type="button" onclick="remove(${cinema.cinemaId})">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     `
