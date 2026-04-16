@@ -81,16 +81,18 @@
         }
 
         document.getElementById('save').addEventListener('click', () => {
-            fetch(`/api/cinema`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: inputName.value,
-                    address: inputAddress.value
-                })
-            }).then(rsp => openAll())
+            showConfirm('Dodaj novi bioskop?', () => {
+                fetch(`/api/cinema`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: inputName.value,
+                        address: inputAddress.value
+                    })
+                }).then(rsp => openAll())
+            })
         })
     </script>
 </body>
