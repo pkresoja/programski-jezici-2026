@@ -33,7 +33,7 @@ public class CinemaService {
     }
 
     public Cinema update(Integer id, Cinema entity) {
-        Cinema cinema = repository.findOneByCinemaIdAndDeletedAtIsNull(id).orElseThrow();
+        Cinema cinema = getById(id).orElseThrow();
         cinema.setName(entity.getName());
         cinema.setAddress(entity.getAddress());
         cinema.setUpdatedAt(LocalDateTime.now());
@@ -41,7 +41,7 @@ public class CinemaService {
     }
 
     public void deleteById(Integer id) {
-        Cinema cinema = repository.findOneByCinemaIdAndDeletedAtIsNull(id).orElseThrow();
+        Cinema cinema = getById(id).orElseThrow();
         cinema.setDeletedAt(LocalDateTime.now());
         repository.save(cinema);
     }

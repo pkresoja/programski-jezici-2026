@@ -60,7 +60,7 @@ function showLoading() {
 
 function showConfirm(msg, callback) {
     Swal.fire({
-        title: message,
+        title: msg,
         showCancelButton: true,
         confirmButtonText: 'Da, želim',
         cancelButtonText: 'Ne, odustani',

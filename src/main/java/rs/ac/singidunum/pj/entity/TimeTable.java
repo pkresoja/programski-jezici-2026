@@ -28,7 +28,6 @@ public class TimeTable {
     private Integer timeTableId;
 
     @Column(nullable = false)
-    @JsonIgnore
     private Integer movieId;
 
     @Transient
